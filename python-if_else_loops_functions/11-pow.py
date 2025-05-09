@@ -2,7 +2,7 @@
 def pow(a, b):
      if b == 0:
         return 1
-    elif
+    elif b > 0:
     resultat = 1
         for i in range(b):
             resultat *= a
