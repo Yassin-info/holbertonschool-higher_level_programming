@@ -11,4 +11,4 @@ def pow(a, b):
         resultat = 1
         for i in range(abs(b)):
             resultat *= (a)
-    return a ^ b
+    return 1/resultat
