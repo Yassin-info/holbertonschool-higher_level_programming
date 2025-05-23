@@ -7,25 +7,30 @@ It supports computing area, perimeter, and text-based rendering.
 
 
 class Rectangle:
+    """Representation of a rectangle.
+
+    Attributes:
+        number_of_instances (int): Tracks the number of Rectangle instances.
+        width (int): Width of the rectangle (must be >= 0).
+        height (int): Height of the rectangle (must be >= 0).
     """
-    Representation of a rectangle.
-        Attributes:
-        width (int): Rectangle width (must be >= 0).
-        height (int): Rectangle height (must be >= 0).
-    """
+
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
-        """Initialize a new Rectangle.
+        """Initialize a new Rectangle, increment instance counter.
 
         Args:
             width (int, optional): Initial width. Defaults to 0.
             height (int, optional): Initial height. Defaults to 0.
 
         Raises:
-            TypeError: If either `width` or `height` is not an int.
-            ValueError: If either `width` or `height` is < 0.
+            TypeError: If `width` or `height` is not an int.
+            ValueError: If `width` or `height` is < 0.
         """
         self.width = width
         self.height = height
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -93,21 +98,29 @@ class Rectangle:
         """
         if self.__width == 0 or self.__height == 0:
             return 0
-        else:
-            return ((self.__width * 2) + (self.__height * 2))
+        return 2 * (self.width + self.height)
 
     def __str__(self):
-        """Return the string representation of the rectangle using '#'.
+        """Generate string representation using '#' characters.
 
         Returns:
-            str: A string of '#' characters forming the shape of the rectangle,
-                with width columns and height rows. Returns an empty string if
-                either width or height is 0.
+            str: Multiline string of '#' forming the rectangle dimensions,
+                 or an empty string if width or height is 0.
         """
-        if self.__width == 0 or self.__height == 0:
-            return ("")
-        else:
-            lignes = []
-            for _ in range(self.__height):
-                lignes.append("#" * self.__width)
-            return "\n".join(lignes)
+        if self.width == 0 or self.height == 0:
+            return ""
+        lines = ["#" * self.width for _ in range(self.height)]
+        return "\n".join(lines)
+
+    def __repr__(self):
+        """Generate an “official” string representation.
+
+        Returns:
+        str: A string that can be passed to eval() to recreate this instance.
+        """
+        return f"Rectangle({self.width}, {self.height})"
+
+    def __del__(self):
+        """Print a message upon deletion and decrement instance counter."""
+        print("Bye rectangle...")
+        type(self).number_of_instances -= 1
