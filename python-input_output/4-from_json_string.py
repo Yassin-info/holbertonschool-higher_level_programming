@@ -5,10 +5,10 @@ import json
 
 def from_json_string(my_str):
     """Returns an object (Python data structure) represented by a JSON string
-    
+
     Args:
         my_str (str): JSON string to convert
-        
+    
     Returns:
         object: Python data structure (list, dict, etc.)
     """
