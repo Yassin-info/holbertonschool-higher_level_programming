@@ -46,3 +46,13 @@ class Student:
             return new_dict
         else:
             return self.__dict__
+
+    def reload_from_json(self, json):
+        """
+        Replace all attributes of the Student instance using a dictionary.
+
+        Args:
+            json (dict): Dictionary with keys matching public attribute names.
+        """
+        for key, value in json.items():
+            setattr(self, key, value)

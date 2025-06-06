@@ -5,10 +5,10 @@ import json
 
 def load_from_json_file(filename):
     """Creates an Object from a JSON file
-    
+
     Args:
         filename (str): Name of the JSON file to read from
-        
+
     Returns:
         object: Python object created from the JSON file
     """
