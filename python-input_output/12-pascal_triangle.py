@@ -1,16 +1,35 @@
 #!/usr/bin/python3
 """
-12-main
+This module provides a function to generate Pascal's Triangle.
+
+The function `pascal_triangle(n)` returns a list of lists of integers,
+representing the first `n` rows of Pascal's Triangle.
 """
-pascal_triangle = __import__('12-pascal_triangle').pascal_triangle
 
-def print_triangle(triangle):
+
+def pascal_triangle(n):
     """
-    Print the triangle
+    Generate Pascal's Triangle up to the nth row.
+
+    Args:
+        n (int): The number of rows to generate.
+
+    Returns:
+        list: A list of lists, where each inner list represents
+              a row of Pascal's Triangle.
     """
-    for row in triangle:
-        print("[{}]".format(",".join([str(x) for x in row])))
+    if n <= 0:
+        return []
+    else:
+        triangle = [[1]]
+        for i in range(1, n):
+            prev_row = triangle[-1]
+            new_row = [1]
+            for j in range(1, len(prev_row)):
+                new_value = prev_row[j - 1] + prev_row[j]
+                new_row.append(new_value)
 
+            new_row.append(1)
+            triangle.append(new_row)
 
-if __name__ == "__main__":
-    print_triangle(pascal_triangle(5))
+        return triangle
