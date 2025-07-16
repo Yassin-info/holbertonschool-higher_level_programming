@@ -1,5 +1,4 @@
 #!/usr/bin/node
-
 const nbArgv = process.argv.length - 2;
 
 if (nbArgv === 0) {

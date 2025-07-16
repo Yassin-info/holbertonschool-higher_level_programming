@@ -1,12 +1,11 @@
 #!/usr/bin/node
 
-const argv = 'X';
-const argc = parseInt(process.argv[2]);
+const size = parseInt(process.argv[2]);
 
-if (isNaN(argc)) {
+if (isNaN(size)) {
   console.log('Missing size');
 } else {
-  for (let i = 0; i < argc; i++) {
-    console.log(argv.repeat(argc));
+  for (let i = 0; i < size; i++) {
+    console.log('X'.repeat(size));
   }
 }

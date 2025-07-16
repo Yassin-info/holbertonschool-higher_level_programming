@@ -1,7 +1,9 @@
 #!/usr/bin/node
 
-const argv = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
+// Array containing the lines to display
+const lines = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
 
-for (let i = 0; i < 3; i++) {
-  console.log(argv[i]);
+// Loop through each line in the array
+for (let i = 0; i < lines.length; i++) {
+  console.log(lines[i]);
 }
