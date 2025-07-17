@@ -1,23 +1,19 @@
 #!/usr/bin/python3
+
 """
-Defines a State class and an instance of Base for SQLAlchemy ORM.
+Defines a State class and a Base instance for SQLAlchemy
 """
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
-# Create the Base class for declarative mapping
+
+# Create the Base instance
 Base = declarative_base()
 
 
 class State(Base):
-    """
-    State class that links to the MySQL table 'states'.
-    Attributes:
-        id (int): The state's id, primary key,
-		auto-generated, unique, not null.
-        name (str): The state's name, string with max 128 characters, not null.
-    """
+    """State class for the states table"""
     __tablename__ = 'states'
 
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)

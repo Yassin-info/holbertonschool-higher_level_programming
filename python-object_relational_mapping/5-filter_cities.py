@@ -1,46 +1,38 @@
 #!/usr/bin/python3
 """
-Lists all cities of a state passed as argument from the database hbtn_0e_4_usa.
+Script that lists all cities of a state from the database hbtn_0e_4_usa.
+
+Usage: ./5-filter_cities.py <mysql username>
+<mysql password> <database name> <state name>
+
+Arguments:
+    mysql username: MySQL username to connect with
+    mysql password: MySQL password to connect with
+    database name: Database to use
+    state name: State to filter cities by
 """
 
 import MySQLdb
 import sys
 
-
 if __name__ == "__main__":
-    """
-    Connects to the database,
-    retrieves and displays all cities of a given state,
-    sorted by cities.id in ascending order.
-    """
-    # Connect to the MySQL server
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=sys.argv[1],
         passwd=sys.argv[2],
-        db=sys.argv[3]
+        db=sys.argv[3],
     )
-
-    # Create a cursor object to execute queries
-    cursor = db.cursor()
-
-    # SQL query to retrieve all cities of the given state
-    query = """
-        SELECT cities.name
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC;
-    """
-    cursor.execute(query, (sys.argv[4],))
-
-    # Fetch all rows from the executed query
-    rows = cursor.fetchall()
-
-    # Print the city names as a comma-separated list
+    cur = db.cursor()
+    state = sys.argv[4]
+    query = (
+        "SELECT cities.name FROM cities "
+        "JOIN states ON cities.state_id = states.id "
+        "WHERE states.name = %s "
+        "ORDER BY cities.id ASC"
+    )
+    cur.execute(query, (state,))
+    rows = cur.fetchall()
     print(", ".join(row[0] for row in rows))
-
-    # Close the cursor and database connection
-    cursor.close()
+    cur.close()
     db.close()
