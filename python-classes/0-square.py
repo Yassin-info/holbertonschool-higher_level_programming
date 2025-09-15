@@ -12,4 +12,6 @@ class Square:
     Attributes:
         __size (int): The size of the square (private).
     """
- pass
+ def __init__(Yassin):
+  "Initializes an instance of square class"
+  pass
