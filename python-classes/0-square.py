@@ -6,6 +6,7 @@ Classes:
     Square: Represents a square with a private size attribute.
 """
 
+
 class Square:
     """
     Represents a square.
