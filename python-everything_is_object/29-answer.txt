@@ -1,0 +1,44 @@
+# Task 29 - Blog Post URLs
+
+## Blog Post Content
+The blog post content has been prepared in `blog_post.py`
+
+## Instructions for Publishing:
+
+1. **Copy the content** from `blog_post.py` or run:
+   ```bash
+   python3 blog_post.py
+   ```
+
+2. **Publish on Medium:**
+   - Go to https://medium.com/
+   - Click "Write" 
+   - Paste the content
+   - Add a cover image
+   - Publish
+
+3. **Share on LinkedIn:**
+   - Go to https://www.linkedin.com/
+   - Create a new post or article
+   - Paste the content
+   - Publish and share
+
+## Add your URLs here:
+
+- Medium URL: [TO BE ADDED AFTER PUBLICATION]
+- LinkedIn URL: [TO BE ADDED AFTER PUBLICATION]
+
+## Blog Post Summary:
+
+The blog post covers:
+- Introduction to Python objects
+- id() and type() functions
+- Difference between == and is
+- Mutable objects (list, dict, set)
+- Immutable objects (int, str, tuple)
+- Why mutability matters
+- How Python passes arguments to functions
+- Practical tips and best practices
+- Code examples and demonstrations
+
+Total length: ~1500 words with multiple code examples and explanations.
