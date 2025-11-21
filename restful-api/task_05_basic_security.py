@@ -1,8 +1,12 @@
+#!/usr/bin/python3
+"""
+API with security and authentication using Flask.
+"""
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
     JWTManager, create_access_token,
-    jwt_required, get_jwt_identity
+    jwt_required, get_jwt_identity, get_jwt
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -45,10 +49,8 @@ def login():
     if (username in users and
             check_password_hash(users[username]['password'], password)):
         access_token = create_access_token(
-            identity={
-                "username": username,
-                "role": users[username]['role']
-            }
+            identity=username,
+            additional_claims={"role": users[username]['role']}
         )
         return jsonify(access_token=access_token)
     return jsonify({"error": "Bad username or password"}), 401
@@ -63,8 +65,8 @@ def jwt_protected():
 @app.route('/admin-only')
 @jwt_required()
 def admin_only():
-    current_user = get_jwt_identity()
-    if current_user['role'] == 'admin':
+    claims = get_jwt()
+    if claims.get('role') == 'admin':
         return "Admin Access: Granted"
     return jsonify({"error": "Admin access required"}), 403
 
@@ -80,8 +82,18 @@ def handle_invalid_token_error(err):
 
 
 @jwt.expired_token_loader
-def handle_expired_token_error(err):
+def handle_expired_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Token has expired"}), 401
+
+
+@jwt.revoked_token_loader
+def handle_revoked_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has been revoked"}), 401
+
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Fresh token required"}), 401
 
 
 if __name__ == '__main__':

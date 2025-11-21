@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+Simple API using Python's http.server module.
+"""
 import http.server
 import json
 import socketserver

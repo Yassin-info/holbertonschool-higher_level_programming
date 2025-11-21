@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+Simple API using Flask framework.
+"""
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -30,12 +34,28 @@ def get_user(username):
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
-    user_data = request.json
-    if not user_data or 'username' not in user_data:
+    # Check if request body is valid JSON
+    try:
+        user_data = request.get_json()
+    except Exception:
+        return jsonify({"error": "Invalid JSON"}), 400
+
+    if user_data is None:
+        return jsonify({"error": "Invalid JSON"}), 400
+
+    # Check if username is provided
+    if 'username' not in user_data:
         return jsonify({"error": "Username is required"}), 400
 
     username = user_data['username']
+
+    # Check if username already exists
+    if username in users:
+        return jsonify({"error": "Username already exists"}), 409
+
+    # Add user to dictionary
     users[username] = user_data
+
     return jsonify({
         "message": "User added",
         "user": user_data
