@@ -1,21 +1,14 @@
 #!/usr/bin/python3
 """
-Module that provides a function to format text with indentation.
+Module that formats text.
 
-This module contains the text_indentation function which prints
-text with 2 new lines after '.', '?', and ':' characters.
+This module contains the text_indentation function.
 """
 
 
 def text_indentation(text):
-    """
-    Prints text with 2 new lines after '.', '?', and ':'.
+    """Prints text with 2 new lines after . ? and :.
 
-    Args:
-        text: The text to format (must be a string)
-
-    Raises:
-        TypeError: If text is not a string
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")

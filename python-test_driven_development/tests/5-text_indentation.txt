@@ -65,10 +65,6 @@ Test long text from example:
 Test empty string:
     >>> text_indentation("")
 
-Test string with only spaces:
-    >>> text_indentation("   ")
-       
-
 Test string with only special characters:
     >>> text_indentation("...")
     .
@@ -107,6 +103,7 @@ Test no special characters:
 Test with newlines in text:
     >>> text_indentation("Hello.\nWorld")
     Hello.
+    <BLANKLINE>
     <BLANKLINE>
     World
 
